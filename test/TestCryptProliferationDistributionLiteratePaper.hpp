@@ -1,6 +1,6 @@
 
-#ifndef TESTCRYPTPROLIFERATIONDISTRIBUTION_HPP_
-#define TESTCRYPTPROLIFERATIONDISTRIBUTION_HPP_
+#ifndef TESTCRYPTPROLIFERATIONDISTRIBUTIONLITERATEPAPER_HPP_
+#define TESTCRYPTPROLIFERATIONDISTRIBUTIONLITERATEPAPER_HPP_
 
 #include <cxxtest/TestSuite.h>
 
@@ -47,7 +47,7 @@
 
 #include "Debug.hpp"
 
-class TestFitCryptProliferationDistribution : public AbstractCellBasedTestSuite
+class TestCryptProliferationDistributionLiteratePaper : public AbstractCellBasedTestSuite
 {
 private:
 
@@ -66,9 +66,6 @@ private:
     }
 
 public:
-
-
-    // Run with command ./projects/CryptProliferation2013/build/optimised/TestFitCryptProliferationDistributionRunner -end_time 1 -CCM 1 -min 0 -max 1 -num_sweeps 5 -CI -min_CI 0 -max_CI 1 -num_CI_sweeps 5
 
     void Test3DCrypt() throw (Exception)
     {
@@ -335,4 +332,4 @@ public:
 	}
 };
 
-#endif /*TESTCRYPTPROLIFERATIONDISTRIBUTION_HPP_*/
+#endif /*TESTCRYPTPROLIFERATIONDISTRIBUTIONLITERATEPAPER_HPP_*/

@@ -1,6 +1,6 @@
 
-#ifndef TESTMUTANTCRYPTPROBABILITY_HPP_
-#define TESTMUTANTCRYPTPROBABILITY_HPP_
+#ifndef TESTCRYPTTAKEOVERPROBABILITYLITERATEPAPER_HPP_
+#define TESTCRYPTTAKEOVERPROBABILITYLITERATEPAPER_HPP_
 
 #include <cxxtest/TestSuite.h>
 
@@ -50,7 +50,7 @@
 
 #include "Debug.hpp"
 
-class TestFitCryptProliferationDistribution : public AbstractCellBasedTestSuite
+class TestCryptTakeoverProbabilityLiteratePaper : public AbstractCellBasedTestSuite
 {
 private:
 
@@ -319,4 +319,4 @@ public:
 	}
 };
 
-#endif /*TESTMUTANTCRYPTPROBABILITY_HPP_*/
+#endif /*TESTCRYPTTAKEOVERPROBABILITYLITERATEPAPER_HPP_*/
