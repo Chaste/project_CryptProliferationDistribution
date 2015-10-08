@@ -2,11 +2,11 @@
 
 This section contains pages generated automatically from the source code accompanying "Altered Proliferation Patterns in Intestinal Crypts Induced by Tumorigenic Radiation Reflect Combined Changes in Cell Cycle Control and Contact Inhibition" 
 
-The code to simulate crypts and run parameter sweeps, which was used produce Figure 3 (and SI Figures 1.1-1.5), can be found here [wiki:PaperTutorials/CryptProliferationDistribution/TestCryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp]
+The code to simulate crypts and run parameter sweeps, which was used produce Figure 3 (and SI Figures 1.1-1.5), can be found here [wiki:PaperTutorials/CryptProliferationDistribution/CryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp]
 
-The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/TestCryptTakeoverProbility TestCryptTakeoverProbilityLiteratePaper.hpp]
+The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbility TestCryptTakeoverProbilityLiteratePaper.hpp]
 
-The code to simulate crypts with a fixed proportion of control and gamma cells, and was used produce Figure 7, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/TestRecoveredCrypt TestRecoveredCryptLiteratePaper.hpp]
+The code to simulate crypts with a fixed proportion of control and gamma cells, and was used produce Figure 7, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/RecoveredCrypt TestRecoveredCryptLiteratePaper.hpp]
 
 
 Before looking at these, you may wish to look at some of the [wiki:UserTutorials basic user tutorials] for Chaste.
@@ -35,9 +35,9 @@ There are two folders - `src` and `test`.
  1. The `src` folder contains the following classes:
   * '''todo'''
  1. The `test` folder contains:
-  * [wiki:PaperTutorials/CryptProliferationDistribution/TestCryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp] - this file can be run to generate Figure 3.
-  * [wiki:PaperTutorials/CryptProliferationDistribution/TestCryptTakeoverProbility TestCryptTakeoverProbilityLiteratePaper.hpp] - this file can be run to generate the results in Figure 6.
-  * [wiki:PaperTutorials/CryptProliferationDistribution/TestRecoveredCrypt TestRecoveredCryptLiteratePaper.hpp] - this file can be run to generate the results in Figure 7.
+  * [wiki:PaperTutorials/CryptProliferationDistribution/CryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp] - this file can be run to generate Figure 3.
+  * [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbility TestCryptTakeoverProbilityLiteratePaper.hpp] - this file can be run to generate the results in Figure 6.
+  * [wiki:PaperTutorials/CryptProliferationDistribution/RecoveredCrypt TestRecoveredCryptLiteratePaper.hpp] - this file can be run to generate the results in Figure 7.
 == Running tests ==
 You can then run tests and simulations with,
 {{{
