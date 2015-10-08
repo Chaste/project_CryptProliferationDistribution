@@ -4,7 +4,7 @@ This section contains pages generated automatically from the source code accompa
 
 The code to simulate crypts and run parameter sweeps, which was used produce Figure 3 (and SI Figures 1.1-1.5), can be found here [wiki:PaperTutorials/CryptProliferationDistribution/CryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp]
 
-The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbility TestCryptTakeoverProbilityLiteratePaper.hpp]
+The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbability TestCryptTakeoverProbabilityLiteratePaper.hpp]
 
 The code to simulate crypts with a fixed proportion of control and gamma cells, and was used produce Figure 7, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/RecoveredCrypt TestRecoveredCryptLiteratePaper.hpp]
 
