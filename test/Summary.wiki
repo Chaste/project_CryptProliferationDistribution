@@ -6,9 +6,6 @@ The code to simulate crypts and run parameter sweeps, which was used produce Fig
 
 The code to simulate crypts initialy comprised of control and gamma cells, and was used produce Figure 6, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbability TestCryptTakeoverProbabilityLiteratePaper.hpp]
 
-The code to simulate crypts with a fixed proportion of control and gamma cells, and was used produce Figure 7, can be found here [wiki:PaperTutorials/CryptProliferationDistribution/RecoveredCrypt TestRecoveredCryptLiteratePaper.hpp]
-
-
 Before looking at these, you may wish to look at some of the [wiki:UserTutorials basic user tutorials] for Chaste.
 
 
@@ -36,8 +33,7 @@ There are two folders - `src` and `test`.
   * '''todo'''
  1. The `test` folder contains:
   * [wiki:PaperTutorials/CryptProliferationDistribution/CryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp] - this file can be run to generate Figure 3.
-  * [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbility TestCryptTakeoverProbilityLiteratePaper.hpp] - this file can be run to generate the results in Figure 6.
-  * [wiki:PaperTutorials/CryptProliferationDistribution/RecoveredCrypt TestRecoveredCryptLiteratePaper.hpp] - this file can be run to generate the results in Figure 7.
+  * [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbability TestCryptTakeoverProbilityLiteratePaper.hpp] - this file can be run to generate the results in Figure 6.
 == Running tests ==
 You can then run tests and simulations with,
 {{{
@@ -47,10 +43,6 @@ scons b=GccOpt ts=projects/CryptProliferationDistribution/test/TestCryptProlifer
 and 
 {{{
 scons b=GccOpt ts=projects/CryptProliferationDistribution/test/TestCryptTakeoverProbilityLiteratePaper.hpp
-}}}
-and
-{{{
-scons b=GccOpt ts=projects/CryptProliferationDistribution/test/TestRecoveredCryptLiteratePaper.hpp
 }}}
 ----
 '''NB''': the paper was developed with release version 3.4. It will not work with with release version 3.3 or under.

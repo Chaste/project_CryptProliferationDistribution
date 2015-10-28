@@ -1,4 +1,3 @@
-
 #ifndef TESTCRYPTPROLIFERATIONDISTRIBUTIONLITERATEPAPER_HPP_
 #define TESTCRYPTPROLIFERATIONDISTRIBUTIONLITERATEPAPER_HPP_
 
@@ -69,17 +68,12 @@ public:
 
     void Test3DCrypt() throw (Exception)
     {
-
-
     	// Model setup
+        // 1 - Pedigree
+        // 2 - Spatial Wnt
+        // 3 - Spatial Wnt at birth
+        // 4 - Mutant
 
-
-        /*
-         * 1 - Pedigree
-         * 2 - Spatial Wnt
-         * 3 - Spatial Wnt at birth
-         * 4 - Mutant
-         */
     	TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-CCM"));
     	unsigned cell_proliferation_model = (unsigned) atof(CommandLineArguments::Instance()->GetStringCorrespondingToOption("-CCM").c_str());
     	assert(cell_proliferation_model==1 || cell_proliferation_model==2 || cell_proliferation_model==3  || cell_proliferation_model==4);
@@ -88,12 +82,10 @@ public:
 
     	bool wnt_dependent_ccd = CommandLineArguments::Instance()->OptionExists("-WDCCD");
 
-
     	// Sim and sweep Params
     	TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-end_time"));
     	double end_time = atof(CommandLineArguments::Instance()->GetStringCorrespondingToOption("-end_time").c_str());
 
-    	// Param Sweep
     	TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-min"));
         double min_param = atof(CommandLineArguments::Instance()->GetStringCorrespondingToOption("-min").c_str());
 
@@ -109,7 +101,6 @@ public:
         TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-num_sweeps"));
     	double num_sweeps = atof(CommandLineArguments::Instance()->GetStringCorrespondingToOption("-num_sweeps").c_str());
 
-    	// CI Sweep
     	TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-min_CI"));
         double min_CI_param = atof(CommandLineArguments::Instance()->GetStringCorrespondingToOption("-min_CI").c_str());
 
@@ -118,18 +109,6 @@ public:
 
     	TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-num_CI_sweeps"));
     	double num_CI_sweeps = atof(CommandLineArguments::Instance()->GetStringCorrespondingToOption("-num_CI_sweeps").c_str());
-
-
-
-
-
-//		unsigned max_index = 4; // Number of things to sweep over
-//		double max_wnt_thresh = 1.0;
-//		double min_wnt_thresh = 0.0;
-//
-//		unsigned min_generations = 1; // As 0 means all differentiated in Steady State
-//		unsigned max_generations = 3;
-
 
         // Crypt Setup
         double cell_radius = 3.5;
@@ -141,14 +120,11 @@ public:
 		unsigned num_stem_cells = 60;
 		unsigned num_cells = num_paneth_cells + num_stem_cells;
 
-		double stem_retainer_force_magnitude = 7.5*10;
-		double paneth_retainer_force_magnitude = 7.5*10;
+        double stem_retainer_force_magnitude = 7.5*10;
+        double paneth_retainer_force_magnitude = 7.5*10;
 
-
-
-
-         for (unsigned index = 0; index<=num_sweeps;   index ++)
-         {
+        for (unsigned index = 0; index<=num_sweeps;   index ++)
+        {
         	double param = min_param + (double)index / double(num_sweeps) * (max_param-min_param);
 
 			PRINT_3_VARIABLES(cell_proliferation_model,
@@ -159,11 +135,6 @@ public:
 			unsigned upper_max_transit_generations = (unsigned)ceil(param);
 			unsigned lower_max_transit_generations = (unsigned)floor(param);
 			double prob_of_upper_max_transit_generations = param - floor(param);
-
-//				PRINT_4_VARIABLES(max_transit_generations,
-//								  lower_max_transit_generations,
-//								  upper_max_transit_generations,
-//								  prob_of_upper_max_transit_generations);
 
 			//Sweep over CI param
 			for (unsigned CIindex = 0; CIindex<=num_CI_sweeps;   CIindex ++)
@@ -197,28 +168,23 @@ public:
 				for (unsigned cell_index= 0;  cell_index<cells.size(); cell_index++)
 				{
 					cells[cell_index]->GetCellData()->SetItem("Radius", cell_radius);
-					  /*
-					   * Specify CCM
-					   */
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetCellProliferationModel(cell_proliferation_model);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsContactInhibitionCellCycleDuration((bool)contact_inhibition);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsWntDependentCellCycleDuration((bool)wnt_dependent_ccd);
 
-					  /*
-					   * Set some default CCD parameters So total CCM is U[10,14] and (U[22,26] at base if variable)
-					   */
+					// Specify CCM
+					dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetCellProliferationModel(cell_proliferation_model);
+					dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsContactInhibitionCellCycleDuration((bool)contact_inhibition);
+					dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsWntDependentCellCycleDuration((bool)wnt_dependent_ccd);
 
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMDuration(4.0);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetSDuration(4.0);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetG2Duration(2.0);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetTransitCellG1Duration(2.0);  // so total CCM is U[10,14] at threshold
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetStemCellG1Duration(14.0);  // so total CCM is U[10,14] at base
+                    // Set some default CCD parameters So total CCM is U[10,14] and (U[22,26] at base if variable)
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMDuration(4.0);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetSDuration(4.0);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetG2Duration(2.0);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetTransitCellG1Duration(2.0);  // so total CCM is U[10,14] at threshold
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetStemCellG1Duration(14.0);  // so total CCM is U[10,14] at base
 
-					  /*
-					   * Threshold and Generation specific parameters
-					   */
-				      if (cell_proliferation_model ==1 ) // i.e Pedigree dependent
-				      {
+
+					//Threshold and Generation specific parameters
+					if (cell_proliferation_model ==1 ) // i.e Pedigree dependent
+				    {
 				    	  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetWntThreshold(1.0);
 				    	  if (RandomNumberGenerator::Instance()->ranf()<prob_of_upper_max_transit_generations)
 				    	  {
@@ -228,31 +194,29 @@ public:
 				    	  {
 				    		  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMaxTransitGenerations(lower_max_transit_generations); // Mutant = MAX_UNSIGNED
 				    	  }
-				      }
-				      else
-				      {
+				    }
+				    else
+				    {
 				    	  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetWntThreshold(param);
 				    	  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMaxTransitGenerations(UINT_MAX);
-  				      }
+  				    }
 
-    				  /*
-					   * Contact Inhibition specific parameters (Mutant, same CI)
-					   */
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetEquilibriumVolume(M_PI*4.0/3.0*cell_radius*cell_radius*cell_radius);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetQuiescentVolumeFraction(CIparam);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantQuiescentVolumeFraction(CIparam);
+                    // Contact Inhibition specific parameters (Mutant, same CI)
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetEquilibriumVolume(M_PI*4.0/3.0*cell_radius*cell_radius*cell_radius);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetQuiescentVolumeFraction(CIparam);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantQuiescentVolumeFraction(CIparam);
 
 				}
 
 				// Make some cells paneth cells
 				for(unsigned cell_index= 0;  cell_index<num_paneth_cells; cell_index++)
 				{
-						unsigned index = cell_index * num_cells/num_paneth_cells;
-						if (index > num_cells)
-						{
-								index = num_cells;
-						}
-						cells[index]->SetCellProliferativeType(p_paneth_type);
+                    unsigned index = cell_index * num_cells/num_paneth_cells;
+                    if (index > num_cells)
+                    {
+                        index = num_cells;
+                    }
+                    cells[index]->SetCellProliferativeType(p_paneth_type);
 				}
 
 				// Create cell population

@@ -1,1 +1,2 @@
-TestHello.hpp
+TestCryptProliferationDistributionLiteratePaper.hpp
+TestCryptTakeoverProbabilityLiteratePaper.hpp

@@ -1,4 +1,3 @@
-
 #ifndef TESTCRYPTTAKEOVERPROBABILITYLITERATEPAPER_HPP_
 #define TESTCRYPTTAKEOVERPROBABILITYLITERATEPAPER_HPP_
 
@@ -73,29 +72,18 @@ public:
     void Test3DCrypt() throw (Exception)
     {
 
-    	        TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-run_index"));
-    	        unsigned start_index = CommandLineArguments::Instance()->GetUnsignedCorrespondingToOption("-run_index");
+        TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-run_index"));
+        unsigned start_index = CommandLineArguments::Instance()->GetUnsignedCorrespondingToOption("-run_index");
 
-    	        TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-num_runs"));
-    	        unsigned num_runs = CommandLineArguments::Instance()->GetUnsignedCorrespondingToOption("-num_runs");
-
-    	// Simulation parameters
-//		unsigned start_index = 0;
-//		unsigned num_runs = 10;
-
-//    	unsigned num_sweeps= 9;
-//		double percent_mutant_array[9] = {0.025, 0.05, 0.075, 0.125, 0.15, 0.175, 0.225, 0.25, 0.275};
+        TS_ASSERT(CommandLineArguments::Instance()->OptionExists("-num_runs"));
+        unsigned num_runs = CommandLineArguments::Instance()->GetUnsignedCorrespondingToOption("-num_runs");
 
 
-    	//unsigned num_sweeps= 11;
-		//double percent_mutant_array[11] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
+    	unsigned num_sweeps= 11;
+		double percent_mutant_array[11] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
 
-		unsigned num_sweeps= 20;
-		double percent_mutant_array[20] = {0.025, 0.05, 0.075, 0.125, 0.15, 0.175, 0.225, 0.25, 0.275, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
-
-
-		double time_to_steady_state = 100.0; //100
-        double time_after_mutations = 10000.0; //5000
+        double time_to_steady_state = 100.0;
+        double time_after_mutations = 10000.0;
 
     	// Optimal Healthy Model
     	unsigned healthy_cell_proliferation_model = 3u; // Spatial Wnt at birth
@@ -122,12 +110,12 @@ public:
 		double stem_retainer_force_magnitude = 7.5*10;
 		double paneth_retainer_force_magnitude = 7.5*10;
 
-		/* Loop over the random seed. */
+		// Loop over the random seed.
 		for(unsigned sim_index=start_index; sim_index < start_index + num_runs; sim_index++)
 		{
 			std::cout << " Run number " << sim_index << "... " << std::flush;
 
-			/* Re seed the random number generator*/
+			// Reseed the random number generator
 			RandomNumberGenerator::Instance()->Reseed(100*sim_index);
 
 			for (unsigned param_index = 0; param_index<num_sweeps;   param_index ++)
@@ -167,31 +155,27 @@ public:
 				for (unsigned cell_index= 0;  cell_index<cells.size(); cell_index++)
 				{
 					cells[cell_index]->GetCellData()->SetItem("Radius", cell_radius);
-					  /*
-					   * Specify CCM
-					   */
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetCellProliferationModel(healthy_cell_proliferation_model);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsContactInhibitionCellCycleDuration(true);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsWntDependentCellCycleDuration(healthy_wnt_dependend_ccd);
 
-					  /*
-					   * Set some default CCD parameters So total CCM is U[10,14] and (U[22,26] at base if variable)
-					   */
+					// Specify CCM
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetCellProliferationModel(healthy_cell_proliferation_model);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsContactInhibitionCellCycleDuration(true);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetIsWntDependentCellCycleDuration(healthy_wnt_dependend_ccd);
 
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMDuration(4.0);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetSDuration(4.0);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetG2Duration(2.0);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetTransitCellG1Duration(2.0);  // so total CCM is U[10,14] at threshold
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetStemCellG1Duration(14.0);  // so total CCM is U[10,14] at base
+                    // Set some default CCD parameters So total CCM is U[10,14] and (U[22,26] at base if variable)
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMDuration(4.0);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetSDuration(4.0);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetG2Duration(2.0);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetTransitCellG1Duration(2.0);  // so total CCM is U[10,14] at threshold
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetStemCellG1Duration(14.0);  // so total CCM is U[10,14] at base
 
-					  /* All cells are intially healthy cells */
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetWntThreshold(healthy_wnt_thresh);
-				      dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantWntThreshold(healthy_wnt_thresh);
+                    // All cells are intially healthy cells
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetWntThreshold(healthy_wnt_thresh);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMutantWntThreshold(healthy_wnt_thresh);
 
-				      dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetQuiescentVolumeFraction(healthy_CI);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetQuiescentVolumeFraction(healthy_CI);
 
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMaxTransitGenerations(UINT_MAX);
-					  dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetEquilibriumVolume(M_PI*4.0/3.0*cell_radius*cell_radius*cell_radius);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetMaxTransitGenerations(UINT_MAX);
+                    dynamic_cast<CryptCellCycleModel*>(cells[cell_index]->GetCellCycleModel())->SetEquilibriumVolume(M_PI*4.0/3.0*cell_radius*cell_radius*cell_radius);
 				}
 
 				// Make some cells paneth cells
@@ -212,7 +196,6 @@ public:
 				cell_population.SetUseVariableRadii(true);
 
 				// Output data
-
 				cell_population.AddCellPopulationCountWriter<CellProliferativeTypesCountWriter>();
 				cell_population.AddCellPopulationCountWriter<CellMutationStatesCountWriter>();
 				cell_population.AddCellWriter<CellAgesWriter>();
@@ -274,24 +257,23 @@ public:
 
 
 
-				/* Now make a proportion of the cells mutant. */
+				// Now make a proportion of the cells mutant.
 
-				/* Iterate over all cells, to randomly assign a proportion to be mutant. */
+				// Iterate over all cells, to randomly assign a proportion to be mutant.
 				for (AbstractCellPopulation<3>::Iterator cell_iter = simulator.rGetCellPopulation().Begin();
 				cell_iter != simulator.rGetCellPopulation().End();
 				++cell_iter)
 				{
-			      /* Generate a uniform random number to choose between Healthy and mutant cell in appropriate ratio
-				   *  Contact Inhibition specific parameters
-				   *
-				   */
-					if(!cell_iter->GetCellProliferativeType()->IsType<PanethCellProliferativeType>())
+				    // Generate a uniform random number to choose between Healthy and mutant cell in appropriate ratio
+
+				    // Contact Inhibition specific parameters
+				    if(!cell_iter->GetCellProliferativeType()->IsType<PanethCellProliferativeType>())
 					{
 						double u = RandomNumberGenerator::Instance()->ranf();
 						if (u < percent_mutant)// Mutant cell
 						{
 							cell_iter->SetMutationState(p_mutant_state);
-							/* these cells are now mutant cells */
+							// these cells are now mutant cells
 							dynamic_cast<CryptCellCycleModel*>(cell_iter->GetCellCycleModel())->SetCellProliferationModel(mutant_cell_proliferation_model);
 							dynamic_cast<CryptCellCycleModel*>(cell_iter->GetCellCycleModel())->SetIsWntDependentCellCycleDuration(mutant_wnt_dependend_ccd);
 
@@ -305,7 +287,7 @@ public:
 				simulator.rGetCellPopulation().SetCellAncestorsToLocationIndices();
 
 
-				/* Run the simulation to see the evolution of mutant v healthy cells. */
+				// Run the simulation to see the evolution of mutant v healthy cells.
 				simulator.SetEndTime(time_to_steady_state + time_after_mutations);
 				simulator.Solve();
 
