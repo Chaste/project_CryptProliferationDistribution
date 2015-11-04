@@ -30,7 +30,12 @@ You can now run the tests or simulations, or create your own test suites.
 == Documentation ==
 There are two folders - `src` and `test`.
  1. The `src` folder contains the following classes:
-  * '''todo'''
+  * `CellRetainerForce.xpp` - The force which restrains stem and paneth cells in the base of the crypt.
+  * `CryptCellCycleModel.xpp` - A cell cycle model which combines all 6 models investigated in the paper. Each model is selected by setting member variables.
+  * `CryptGeometryBoundaryCondition3d.xpp` - The 3D gemoetry of the crypt based on measurements from a 6 week old male wild type mouse. 
+  * `DifferentialAdhesionSpringForce.xpp` - The force between cells, specifying differntial adhesion between stem and paneth cells.
+  * `OffLatticeSimulationWithMonoclonalStoppingEvent.xpp` - A special simulations class where the simulation stops when the crypt becomes all one type, mutant or healthy. 
+  * `PanethCellProliferativeType.xpp` - A marker for paneth cells.
  1. The `test` folder contains:
   * [wiki:PaperTutorials/CryptProliferationDistribution/CryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp] - this file can be run to generate Figure 3.
   * [wiki:PaperTutorials/CryptProliferationDistribution/CryptTakeoverProbability TestCryptTakeoverProbilityLiteratePaper.hpp] - this file can be run to generate the results in Figure 6.
