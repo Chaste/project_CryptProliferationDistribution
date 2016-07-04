@@ -1,6 +1,6 @@
-= Crypt Proliferation Distribution =
+= Distribution of mitotic events in healthy and irradiated crypts =
 
-This section contains pages generated automatically from the source code accompanying "Altered Proliferation Patterns in Intestinal Crypts Induced by Tumorigenic Radiation Reflect Combined Changes in Cell Cycle Control and Contact Inhibition" 
+This section contains pages generated automatically from the source code accompanying Dunn et al. (2016) "Combined changes in Wnt signaling response and contact inhibition induce altered proliferation in radiation-treated intestinal crypts" in Mollecular Biology of the Cell http://dx.doi.org/10.1091/mbc.E15-12-0854
 
 The code to simulate crypts and run parameter sweeps, which was used produce Figure 3 (and SI Figures 1.1-1.5), can be found here [wiki:PaperTutorials/CryptProliferationDistribution/CryptProliferationDistribution TestCryptProliferationDistributionLiteratePaper.hpp]
 
